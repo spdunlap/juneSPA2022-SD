@@ -3,7 +3,7 @@ import * as state from "/store";
 import Navigo from "navigo";
 import { capitalize } from "lodash";
 
-const router = new Navigo(window.location.origin);
+const router = new Navigo("/");
 
 function render(st = state.Home) {
   document.querySelector("#root").innerHTML = `
@@ -15,7 +15,7 @@ function render(st = state.Home) {
   router.updatePageLinks();
   addEventListeners(st);
 }
-render(state.home);
+// render(state.home);
 
 function addEventListeners(st) {
   // add event listeners to Nav items for navigation
@@ -30,3 +30,13 @@ function addEventListeners(st) {
   // document.querySelector(".fa-bars").addEventListener("click", () => {
   //   document.querySelector("nav > ul").classList.toggle("hidden--mobile");
 }
+
+router
+  .on({
+    "/": () => render(),
+    ":view": params => {
+      let view = capitalize(params.data.view);
+      render(store[view]);
+    }
+  })
+  .resolve();
