@@ -18,6 +18,8 @@
   "dependencies": {
     "html-literal": "^1.1.0",
     "parcel": "^2.0.1",
+    "navigo": "^7.1.3",
+    "lodash": "^4.17.21",
     "yargs-parser": ">=13.1.2"
   }
 }
